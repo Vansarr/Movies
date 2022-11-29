@@ -13,8 +13,8 @@ import lombok.NoArgsConstructor;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class MovieDto {
 
-    @JsonIgnore
-    private String id;
+    @JsonProperty("id")
+    private Long id;
 
     @JsonProperty("Title")
     private String title;

@@ -8,7 +8,7 @@ import org.springframework.web.client.RestTemplate;
 
 @Getter
 @Configuration
-public class MoviesConfig {
+public class MovieConfig {
 
     @Bean
     public RestTemplate restTemplate() {
@@ -17,7 +17,6 @@ public class MoviesConfig {
 
     @Value("${omdb.api.endpoint.prod}")
     private String omdbApiEndpoint;
-
     @Value("${omdb.app.key}")
     private String omdbAppKey;
 }
