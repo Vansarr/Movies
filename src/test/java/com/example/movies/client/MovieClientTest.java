@@ -42,9 +42,12 @@ class MovieClientTest {
                 "test_poster");
 
         URI uri = new URI("http://test.com/?t=test_title&y&apikey=test_key");
+
         when(restTemplate.getForObject(uri, MovieDto.class)).thenReturn(movie);
+
         //When
         MovieDto fetchedMovie = movieClient.getMovie("test_title", null);
+
         //Then
         assertEquals("test_title", fetchedMovie.getTitle());
         assertEquals("test_plot", fetchedMovie.getPlot());
