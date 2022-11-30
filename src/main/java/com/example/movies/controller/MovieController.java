@@ -22,13 +22,13 @@ public class MovieController {
     private final MovieMapper movieMapper;
 
     @GetMapping()
-    public ResponseEntity<MovieDto> getMovieByTitle(@RequestParam String title) {
-        return ResponseEntity.ok(movieService.fetchMovie(title));
+    public ResponseEntity<MovieDto> getMovieByTitleAndYear(@RequestParam String title, @RequestParam(required = false) String year) {
+        return ResponseEntity.ok(movieService.fetchMovie(title, year));
     }
 
     @PostMapping
-    public ResponseEntity<Void> addMovieToFavorites(@RequestParam String title) throws MovieNotFoundException {
-        Movie movie = movieMapper.mapToMovie(movieService.fetchMovie(title));
+    public ResponseEntity<Void> addMovieToFavorites(@RequestParam String title, @RequestParam String year) throws MovieNotFoundException {
+        Movie movie = movieMapper.mapToMovie(movieService.fetchMovie(title, year));
         if(movie.getTitle() == null) throw new MovieNotFoundException();
         dbService.saveMovie(movie);
         return ResponseEntity.ok().build();
