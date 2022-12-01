@@ -1,4 +1,9 @@
 package com.example.movies.controller;
 
-public class MovieNotFoundException extends Exception {
+import java.util.function.Supplier;
+
+public class MovieNotFoundException extends Exception{
+    public MovieNotFoundException(String message) {
+        super(message);
+    }
 }

@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -19,14 +20,14 @@ public class DbService {
     }
 
     public Movie getMovie(final Long id) throws MovieNotFoundException {
-        return repository.findById(id).orElseThrow(MovieNotFoundException::new);
+        return repository.findById(id).orElseThrow(() -> new MovieNotFoundException("Couldn't find movie with such id"));
     }
 
     public Movie saveMovie(final Movie movie){
         return repository.save(movie);
     }
 
-    public void deleteMovie(Long id) {
+    public void deleteMovie(final Long id) {
         repository.deleteById(id);
     }
 }
