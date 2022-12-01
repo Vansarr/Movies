@@ -29,7 +29,7 @@ public class MovieController {
     @PostMapping
     public ResponseEntity<Void> addMovieToFavorites(@RequestParam String title, @RequestParam(required = false) String year) throws MovieNotFoundException {
         Movie movie = movieMapper.mapToMovie(movieService.fetchMovie(title, year));
-        if(movie.getTitle() == null) throw new MovieNotFoundException("Movie has not been added to Favorites. Couldn't find movie matching this title/year");
+        if(movie.getTitle() == null) throw new MovieNotFoundException("Couldn't add to Favorites. Movie matching this title/year not found");
         dbService.saveMovie(movie);
         return ResponseEntity.ok().build();
     }
